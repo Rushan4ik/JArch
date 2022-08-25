@@ -1,39 +1,50 @@
 package com.company.algorithm;
 
-public final class HuffmanNode {
-    private final Character symbol;
-    private final int frequency;
-    private HuffmanNode left = null, right = null;
+public class HuffmanNode {
+    private final Byte data;
+    private HuffmanNode left, right;
 
-    public HuffmanNode(Character symbol, int frequency) {
-        this.symbol = symbol;
-        this.frequency = frequency;
+    public HuffmanNode(Byte data) {
+        this.data = data;
     }
 
-    public HuffmanNode(Character symbol, int frequency, HuffmanNode left, HuffmanNode right) {
-        this.symbol = symbol;
-        this.frequency = frequency;
+    public HuffmanNode(Byte data, HuffmanNode left, HuffmanNode right) {
+        this.data = data;
         this.left = left;
         this.right = right;
     }
 
-    public int getFrequency() {
-        return frequency;
-    }
-
-    public boolean isLeaf() {
-        return left == null && right == null;
-    }
-
-    public Character getSymbol() {
-        return symbol;
+    public Byte getData() {
+        return data;
     }
 
     public HuffmanNode getLeft() {
         return left;
     }
 
+    public void setLeft(HuffmanNode left) {
+        this.left = left;
+    }
+
     public HuffmanNode getRight() {
         return right;
+    }
+
+    public void setRight(HuffmanNode right) {
+        this.right = right;
+    }
+
+    public boolean isLeaf() {
+        return left == null && right == null;
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("HuffmanNode\n{");
+        if (isLeaf()) {
+            return builder.append("data=").append(data).append("}\n").toString();
+        }
+        return builder.append("left=\n").append(left).append("right=").append(right).toString();
     }
 }
