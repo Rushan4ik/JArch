@@ -28,6 +28,7 @@ public class ArchiverFrame extends Frame {
 
     private void initComponents() {
         Button b = (Button) add(new Button("select file"));
+        Label label = (Label) add(new Label("Wait choice"));
         b.addActionListener(ae -> {
             FileDialog dialog = new FileDialog(this, "Select file", FileDialog.LOAD);
             dialog.setSize(100, 100);
@@ -36,10 +37,13 @@ public class ArchiverFrame extends Frame {
             if (fileName == null) {
                 return;
             }
+            label.setText("Work!");
             ArchiverCommand command = new ArchiverCommand(new File(fileName));
             try {
+                label.setText("Wait choice");
                 command.execute();
             } catch (IOException e) {
+                label.setText("Error!");
                 e.printStackTrace();
             }
         });
