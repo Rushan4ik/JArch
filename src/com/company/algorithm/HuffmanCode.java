@@ -2,19 +2,12 @@ package com.company.algorithm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.stream.IntStream;
+import java.util.Objects;
 
-public class HuffmanCode {
-    HuffmanNode root;
+public final class HuffmanCode {
+    private HuffmanNode root;
+
     public HuffmanCode(HuffmanNode root) {
-        this.root = root;
-    }
-
-    public HuffmanNode getRoot() {
-        return root;
-    }
-
-    public void setRoot(HuffmanNode root) {
         this.root = root;
     }
 
@@ -55,4 +48,29 @@ public class HuffmanCode {
         }
         return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (HuffmanCode) obj;
+        return Objects.equals(this.root, that.root);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(root);
+    }
+
+    @Override
+    public String toString() {
+        return "HuffmanCode[" +
+                "root=" + root + ']';
+    }
+
+    public HuffmanNode root() {
+        return root;
+    }
+
+
 }

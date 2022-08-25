@@ -3,8 +3,8 @@ package com.company.algorithm;
 import java.util.HashMap;
 
 public class HuffmanData {
-    HashMap<Byte, Integer> table;
-    byte[] data;
+    private HashMap<Byte, Integer> table;
+    private byte[] data;
 
     public HuffmanData(HashMap<Byte, Integer> table, byte[] data) {
         this.table = table;
@@ -21,9 +21,5 @@ public class HuffmanData {
 
     public HashMap<Byte, Integer> getTable() {
         return table;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
     }
 }

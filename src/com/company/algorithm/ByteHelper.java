@@ -1,6 +1,6 @@
 package com.company.algorithm;
 
-import static java.lang.Math.*;
+import static java.lang.Math.min;
 
 public final class ByteHelper {
     private static byte convertString(String s) {

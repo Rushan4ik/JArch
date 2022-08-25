@@ -8,8 +8,8 @@ public class HuffmanNode {
         this.data = data;
     }
 
-    public HuffmanNode(Byte data, HuffmanNode left, HuffmanNode right) {
-        this.data = data;
+    public HuffmanNode(HuffmanNode left, HuffmanNode right) {
+        data = null;
         this.left = left;
         this.right = right;
     }
@@ -22,29 +22,11 @@ public class HuffmanNode {
         return left;
     }
 
-    public void setLeft(HuffmanNode left) {
-        this.left = left;
-    }
-
     public HuffmanNode getRight() {
         return right;
     }
 
-    public void setRight(HuffmanNode right) {
-        this.right = right;
-    }
-
     public boolean isLeaf() {
         return left == null && right == null;
-    }
-
-
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder("HuffmanNode\n{");
-        if (isLeaf()) {
-            return builder.append("data=").append(data).append("}\n").toString();
-        }
-        return builder.append("left=\n").append(left).append("right=").append(right).toString();
     }
 }

@@ -1,6 +1,9 @@
 package com.company.algorithm;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
@@ -62,8 +65,8 @@ public class ArchiverCommand {
 
     private void write(HuffmanData encodingData) throws IOException {
         try (FileOutputStream outputStream = new FileOutputStream(source.getName() + ".jarch")) {
-            writeTable(outputStream, encodingData.table);
-            outputStream.write(encodingData.data);
+            writeTable(outputStream, encodingData.getTable());
+            outputStream.write(encodingData.getData());
         }
     }
 

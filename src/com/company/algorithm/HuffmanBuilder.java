@@ -13,10 +13,6 @@ public class HuffmanBuilder {
         return result;
     }
 
-    private static PriorityQueue<HuffmanNodePair> createQueue(byte[] bytes) {
-        return createQueue(countFrequencies(bytes));
-    }
-
     private static PriorityQueue<HuffmanNodePair> createQueue(HashMap<Byte, Integer> frequencies) {
         PriorityQueue<HuffmanNodePair> queue = new PriorityQueue<>(Comparator.comparingInt(HuffmanNodePair::getFrequency));
         frequencies.forEach((key, value) -> queue.add(new HuffmanNodePair(new HuffmanNode(key), value)));
@@ -28,14 +24,10 @@ public class HuffmanBuilder {
         while (queue.size() > 1) {
             HuffmanNodePair left = queue.poll();
             HuffmanNodePair right = queue.poll();
-            queue.add(new HuffmanNodePair(new HuffmanNode(null, left.node, right.node),
+            queue.add(new HuffmanNodePair(new HuffmanNode(left.node, right.node),
                     left.frequency + right.frequency));
         }
         return queue.poll().node;
-    }
-
-    public static HuffmanNode build(byte[] bytes) {
-        return build(countFrequencies(bytes));
     }
 
     private static class HuffmanNodePair {
@@ -45,10 +37,6 @@ public class HuffmanBuilder {
         public HuffmanNodePair(HuffmanNode node, int frequency) {
             this.node = node;
             this.frequency = frequency;
-        }
-
-        public HuffmanNode getNode() {
-            return node;
         }
 
         public int getFrequency() {
