@@ -33,6 +33,9 @@ public class ArchiverFrame extends Frame {
             dialog.setSize(100, 100);
             dialog.setVisible(true);
             String fileName = dialog.getFile();
+            if (fileName == null) {
+                return;
+            }
             ArchiverCommand command = new ArchiverCommand(new File(fileName));
             try {
                 command.execute();
