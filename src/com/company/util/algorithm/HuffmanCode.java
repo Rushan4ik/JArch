@@ -1,4 +1,4 @@
-package com.company.algorithm;
+package com.company.util.algorithm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,10 +67,5 @@ public final class HuffmanCode {
         return "HuffmanCode[" +
                 "root=" + root + ']';
     }
-
-    public HuffmanNode root() {
-        return root;
-    }
-
 
 }

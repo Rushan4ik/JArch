@@ -1,44 +1,26 @@
 package com.company.util;
 
-import com.company.util.algorithm.HuffmanData;
 
-import java.io.*;
+import com.company.util.algorithm.HuffmanBuilder;
+import com.company.util.algorithm.HuffmanCode;
+import com.company.util.algorithm.HuffmanData;
+import com.company.util.algorithm.HuffmanNode;
+
 import java.util.HashMap;
 
-public class ArchiverFacade {
-    public static void toArchive(File file) throws IOException {
-        writeToArchive(file);
+public final class ArchiverFacade {
+    public static HuffmanData pack(byte[] data) {
+        HashMap<Byte, Integer> table = HuffmanBuilder.countFrequencies(data);
+        HuffmanNode node = HuffmanBuilder.build(table);
+        HuffmanCode code = new HuffmanCode(node);
+        String binaryString = code.encode(data);
+        return new HuffmanData(table, ByteHelper.convert(binaryString));
     }
 
-    public static void fromArchive(File file) throws IOException {
-        HuffmanData data = readArchive(file);
-        writeToFile(file, data);
-    }
-
-    private static HuffmanData readArchive(File file) throws IOException {
-        try (FileInputStream inputStream = new FileInputStream(file)) {
-            HashMap<Byte, Integer> table = TableHelper.readTable(inputStream);
-            return new HuffmanData(table, inputStream.readAllBytes());
-        }
-    }
-
-    private static void writeToFile(File file, HuffmanData data) throws IOException {
-        String fileName = file.getName().substring(0, file.getName().length() - ".jarch".length());
-        try (FileOutputStream outputStream = new FileOutputStream(fileName)) {
-            outputStream.write(PackerFacade.unpack(data));
-        }
-    }
-    private static void writeToArchive(File file) throws IOException {
-        try (FileInputStream inputStream = new FileInputStream(file)) {
-            HuffmanData encodingData = PackerFacade.pack(inputStream.readAllBytes());
-            writeData(encodingData, file);
-        }
-    }
-
-    private static void writeData(HuffmanData encodingData, File file) throws IOException {
-        try (FileOutputStream outputStream = new FileOutputStream(file.getName() + ".jarch")) {
-            TableHelper.writeTable(encodingData.getTable(), outputStream);
-            outputStream.write(encodingData.getData());
-        }
+    public static byte[] unpack(HuffmanData data) {
+        HuffmanCode code = new HuffmanCode(data.getRoot());
+        byte[] encode = data.getData();
+        String binaryString = ByteHelper.convert(encode);
+        return code.decode(binaryString);
     }
 }

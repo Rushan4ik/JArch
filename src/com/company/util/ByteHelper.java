@@ -1,7 +1,13 @@
-package com.company.algorithm;
+package com.company.util;
 
 import static java.lang.Math.min;
 
+/**
+ * Cast binary string <=> byte[]
+ * format of byte[]:
+ *      [0] = garbage bits in end
+ *      [1..] = information bits
+ */
 public final class ByteHelper {
     private static byte convertString(String s) {
         StringBuilder builder = new StringBuilder(s);
@@ -28,7 +34,7 @@ public final class ByteHelper {
 
     public static byte[] convert(String binaryString) {
         byte[] result = new byte[(binaryString.length() + 7) / 8 + 1];
-        result[0] = (byte) (8 - (binaryString.length() % 8));
+        result[0] = (byte) ((8 - (binaryString.length() % 8)) % 8);
         for (int i = 0, j = 1; i < binaryString.length(); i += 8, ++j) {
             result[j] = convertString(binaryString.substring(i, min(i + 8, binaryString.length())));
         }

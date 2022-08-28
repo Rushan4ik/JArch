@@ -1,10 +1,10 @@
-package com.company.algorithm;
+package com.company.util.algorithm;
 
 import java.util.HashMap;
 
-public class HuffmanData {
-    private HashMap<Byte, Integer> table;
-    private byte[] data;
+public final class HuffmanData {
+    private final HashMap<Byte, Integer> table;
+    private final byte[] data;
 
     public HuffmanData(HashMap<Byte, Integer> table, byte[] data) {
         this.table = table;

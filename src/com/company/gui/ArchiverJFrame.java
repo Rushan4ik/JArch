@@ -1,18 +1,16 @@
-package com.company;
+package com.company.gui;
 
-import com.company.algorithm.ArchiverCommand;
 import com.company.util.ArchiverCommand;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
 public class ArchiverJFrame extends JFrame {
-    GridBagLayout layout;
-    JLabel state;
-    JButton choice, pack, unpack;
-    File file;
+    private GridBagLayout layout;
+    private JLabel state;
+    private JButton choice, pack, unpack;
+    private File file;
 
 
     public ArchiverJFrame(String title) throws HeadlessException {
@@ -65,7 +63,8 @@ public class ArchiverJFrame extends JFrame {
             command.execute();
             state.setText("Done!");
             file = null;
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
             state.setText("Error!");
         }
     }

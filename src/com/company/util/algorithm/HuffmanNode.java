@@ -1,6 +1,6 @@
-package com.company.algorithm;
+package com.company.util.algorithm;
 
-public class HuffmanNode {
+public final class HuffmanNode {
     private final Byte data;
     private HuffmanNode left, right;
 

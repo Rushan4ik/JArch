@@ -1,10 +1,10 @@
-package com.company.algorithm;
+package com.company.util.algorithm;
 
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-public class HuffmanBuilder {
+public final class HuffmanBuilder {
     public static HashMap<Byte, Integer> countFrequencies(byte[] data) {
         HashMap<Byte, Integer> result = new HashMap<>();
         for (byte e : data) {
